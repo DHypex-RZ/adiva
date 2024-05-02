@@ -1,6 +1,7 @@
-import {Avatar, Button, Navbar, NavbarBrand, NavbarContent} from "@nextui-org/react";
+import {Button, Navbar, NavbarBrand, NavbarContent} from "@nextui-org/react";
 import GoogleSVG from "@/Component/GoogleSVG.jsx";
-import {Link, router} from "@inertiajs/react";
+import {Link} from "@inertiajs/react";
+import AvatarIcono from "@/Component/AvatarIcono.jsx";
 
 export default function Header({usuario}) {
     return (
@@ -14,13 +15,14 @@ export default function Header({usuario}) {
                 <NavbarContent justify="end">
                     {usuario === null ?
                         <Link href={"/google_auth/redirect"}>
-                            <Button color="success" variant="shadow" endContent={<GoogleSVG/>}>
+                            <Button
+                                color="success" variant="shadow" endContent={<GoogleSVG/>}>
                                 Iniciar sesión con Google
                             </Button>
                         </Link>
                         :
                         <>
-                            <Avatar isBordered className="hover:cursor-pointer"/>
+                            <AvatarIcono usuario={usuario}/>
                             <Link href={"/google_auth/logout"}>
                                 <Button color="danger" variant="flat">
                                     Cerrar sesión en Adiva

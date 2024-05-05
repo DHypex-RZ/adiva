@@ -20,7 +20,7 @@ export default function BotonEditarImagen() {
                             </p>
                         </div>
                         <div className="mt-2 flex flex-col gap-2 w-full">
-                            <form encType="multipart/form-data" method="post" action="/subir_imagen">
+                            <form encType="multipart/form-data" method="post" action="/subir-imagen">
                                 <input name="_token" type="hidden" defaultValue={csrf}/>
                                 <Input type="file" name="imagen" required={true}/>
                                 <Button type="submit" color="primary" className="mt-4 w-full">

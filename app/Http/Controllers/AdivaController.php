@@ -14,4 +14,9 @@ class AdivaController
     {
         return AdivaModel::seleccionarVistaInicial();
     }
+
+    function mostrarPoliticas(): InertiaResponse
+    {
+        return Inertia::render("Politicas");
+    }
 }

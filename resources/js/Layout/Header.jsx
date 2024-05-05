@@ -1,16 +1,14 @@
-import {Button, Navbar, NavbarBrand, NavbarContent} from "@nextui-org/react";
-import GoogleSVG from "@/Component/GoogleSVG.jsx";
+import {Button, Divider, Navbar, NavbarBrand, NavbarContent} from "@nextui-org/react";
+import GoogleSVG from "@/Component/SVG/GoogleSVG.jsx";
 import {Link} from "@inertiajs/react";
 import AvatarIcono from "@/Component/AvatarIcono.jsx";
 
 export default function Header({usuario}) {
     return (
-        <header>
+        <header className="sticky top-0 z-10">
             <Navbar>
                 <NavbarBrand>
-                    <h1
-                        className="text-4xl font-bold cursor-default"
-                    >Adiva</h1>
+                    <Link href={"/"} className="text-4xl font-bold">Adiva</Link>
                 </NavbarBrand>
                 <NavbarContent justify="end">
                     {usuario === null ?
@@ -32,6 +30,7 @@ export default function Header({usuario}) {
                     }
                 </NavbarContent>
             </Navbar>
+            <Divider/>
         </header>
     )
 }

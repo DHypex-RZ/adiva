@@ -14,3 +14,5 @@ Route::get('/google_auth/logout', [GoogleController::class, "cerrarSesion"]);
 Route::post("/subir-imagen", [PerfilController::class, "subirImagen"]);
 
 Route::get("/politica-privacidad-y-cookies", [AdivaController::class, "mostrarPoliticas"]);
+Route::get("/buscar-comunidad", [AdivaController::class, "buscarComunidad"]);
+Route::post("/asignar-comunidad", [AdivaController::class, "asignarComunidad"]);

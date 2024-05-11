@@ -2,18 +2,32 @@
 
 namespace App\Models;
 
+use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Inertia\Response as InertiaResponse;
 
-class AdivaModel extends Model
+class AdivaModel
 {
     use HasFactory;
 
-    static function seleccionarVistaInicial(): InertiaResponse
+    function seleccionarVistaInicial(): InertiaResponse|RedirectResponse
     {
-        return Inertia::render(Auth::user() !== null ? 'Adiva' : 'Presentacion');
+        $usuario = Auth::user();
+
+
+        try {
+            if ($usuario->building_id === null) return redirect("/buscar-comunidad");
+        } catch (Exception $exception) {    }
+
+        return Inertia::render(($usuario !== null) ? 'Adiva' : 'Presentacion');
+    }
+
+    function tratarDatosComunidad(string $cp, string $tipo, string $direccion, string $numero): void
+    {
+        $edificio = Building::firstOrCreate(["cp" => $cp, "type" => $tipo, "address" => $direccion, "number" => $numero]);
+        User::where("id", Auth::user()->getAuthIdentifier())->update(["building_id" => $edificio->id]);
     }
 }

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ComunidadRequest;
 use App\Models\AdivaModel;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -10,13 +12,31 @@ use Inertia\Response as InertiaResponse;
 
 class AdivaController
 {
-    function mostrarVistaInicial(): InertiaResponse
+    private AdivaModel $adivaModel;
+
+    public function __construct() {
+        $this->adivaModel = new AdivaModel();
+    }
+
+    function mostrarVistaInicial(): InertiaResponse|RedirectResponse
     {
-        return AdivaModel::seleccionarVistaInicial();
+        return $this->adivaModel->seleccionarVistaInicial();
     }
 
     function mostrarPoliticas(): InertiaResponse
     {
         return Inertia::render("Politicas");
+    }
+
+    function buscarComunidad(): InertiaResponse
+    {
+        return Inertia::render("Comunidad");
+    }
+
+    function asignarComunidad(ComunidadRequest $request): RedirectResponse
+    {
+        $data = [$request->input("cp"), $request->input("tipo"), $request->input("direccion"), $request->input("numero")];
+        $this->adivaModel->tratarDatosComunidad(...$data);
+        return redirect("/");
     }
 }

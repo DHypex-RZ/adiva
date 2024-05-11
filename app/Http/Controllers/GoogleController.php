@@ -10,6 +10,11 @@ use Laravel\Socialite\Facades\Socialite;
 
 class GoogleController
 {
+    private GoogleModel $googleModel;
+
+    public function __construct() {
+        $this->googleModel = new GoogleModel();
+    }
     function iniciarSesion(): RedirectResponse
     {
         return Socialite::driver('google')->redirect();
@@ -18,8 +23,8 @@ class GoogleController
     function obtenerUsuario(): RedirectResponse
     {
         $usuario_google = Socialite::driver('google')->user();
-        GoogleModel::autenticarUsuario($usuario_google);
-        return redirect("/");
+        $nuevoUsuario = $this->googleModel->autenticarUsuario($usuario_google);
+        return redirect($nuevoUsuario ? "/buscar-comunidad" : "/");
     }
 
     function cerrarSesion(): RedirectResponse

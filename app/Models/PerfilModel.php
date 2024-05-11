@@ -2,19 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Http\UploadedFile;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable;
-use App\Models\User;
 
-class PerfilModel extends Model
+class PerfilModel
 {
     use HasFactory;
 
-    static function editarImagen(Authenticatable $usuario, string $imagen): void
+    function editarImagen(int $id_usuario, string $imagen): void
     {
-        User::where(["id" => $usuario->getAuthIdentifier()])
+        User::where(["id" => $id_usuario])
             ->update(["image" => "images/" . $imagen]);
     }
 }

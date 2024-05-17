@@ -11,23 +11,52 @@ use Inertia\Response as InertiaResponse;
 
 class AdivaModel
 {
-    use HasFactory;
+   use HasFactory;
 
-    function seleccionarVistaInicial(): InertiaResponse|RedirectResponse
-    {
-        $usuario = Auth::user();
+   private Building $building;
+   private Floor $floor;
+   private Department $department;
+   private Place $place;
 
 
-        try {
-            if ($usuario->building_id === null) return redirect("/buscar-comunidad");
-        } catch (Exception $exception) {    }
+   function __construct()
+   {
+      $this->building = new Building();
+      $this->floor = new Floor();
+      $this->department = new Department();
+      $this->place = new Place();
+   }
 
-        return Inertia::render(($usuario !== null) ? 'Adiva' : 'Presentacion');
-    }
+   function seleccionarVistaInicial(): InertiaResponse|RedirectResponse
+   {
+      $usuario = Auth::user();
 
-    function tratarDatosComunidad(string $cp, string $tipo, string $direccion, string $numero): void
-    {
-        $edificio = Building::firstOrCreate(["cp" => $cp, "type" => $tipo, "address" => $direccion, "number" => $numero]);
-        User::where("id", Auth::user()->getAuthIdentifier())->update(["building_id" => $edificio->id]);
-    }
+      try {
+         if ($usuario->building === null) return redirect("/buscar-comunidad");
+      } catch (Exception $exception) {
+      }
+
+      if (($usuario !== null)) {
+         $comunidad = $this->building->where(["id" => $usuario->building])->first();
+         $comunidad->places = $this->place->where("building", $comunidad->id)->orderby("name")->get();
+         return Inertia::render('Adiva', ["comunidad" => $comunidad]);
+      } else return Inertia::render('Presentacion');
+   }
+
+   function tratarDatosComunidad(string $cp, string $tipo, string $direccion, string $numero): void
+   {
+      $edificio = $this->building->firstOrCreate([
+         "cp" => $cp,
+         "type" => $tipo,
+         "address" => $direccion,
+         "number" => $numero,
+      ]);
+      User::where("id", Auth::user()->getAuthIdentifier())->update(["building" => $edificio->id]);
+   }
+
+   function insertarDatosEdificio(int $id, int $pisos, int $departamentos): void
+   {
+      Building::where("id", $id)->update(["floors" => $pisos, "departments" => $departamentos]);
+      Floor::insertarPisos($id, $pisos, $departamentos);
+   }
 }

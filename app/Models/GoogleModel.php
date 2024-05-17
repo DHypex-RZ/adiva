@@ -8,19 +8,19 @@ use Laravel\Socialite\Contracts\User as GoogleUser;
 
 class GoogleModel
 {
-    use HasFactory;
+   use HasFactory;
 
-    function autenticarUsuario(GoogleUser $datos): bool
-    {
-        $usuario = User::updateOrCreate([
-            "google_id" => $datos->id
-        ], [
-            "name" => $datos->name,
-            "email" => $datos->email,
-        ]);
+   function autenticarUsuario(GoogleUser $datos): bool
+   {
+      $usuario = User::updateOrCreate([
+         "google_id" => $datos->id
+      ], [
+         "name" => $datos->name,
+         "email" => $datos->email,
+      ]);
 
-        Auth::login($usuario);
+      Auth::login($usuario);
 
-        return $usuario->building_id === null;
-    }
+      return $usuario->building_id === null;
+   }
 }

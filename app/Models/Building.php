@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Building extends Model
 {
-    use HasFactory;
+   use HasFactory;
 
-    protected $table = "buildings";
-    protected $fillable = ["cp", "type", "address", "number"];
+   protected $table = "buildings";
+   protected $fillable = ["cp", "type", "address", "number", "floors", "departments"];
 }

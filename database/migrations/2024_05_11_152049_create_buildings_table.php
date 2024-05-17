@@ -17,6 +17,24 @@ return new class extends Migration
             $table->string('type');
             $table->string('address');
             $table->string('number');
+            $table->tinyInteger('floors')->nullable();
+            $table->tinyInteger('departments')->nullable();
+            $table->timestamps();
+        });
+
+        Schema::create('floors', function (Blueprint $table) {
+            $table->id();
+            $table->tinyInteger("floor");
+            $table->foreignId("building")->references("id")->on("buildings");
+            $table->timestamps();
+        });
+
+        Schema::create('departments', function (Blueprint $table) {
+            $table->id();
+            $table->tinyInteger("department");
+            $table->unsignedTinyInteger("floor");
+            $table->foreignId("building")->references("id")->on("buildings");
+            $table->unsignedBigInteger("user")->nullable();
             $table->timestamps();
         });
     }
@@ -27,5 +45,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('buildings');
+        Schema::dropIfExists('floors');
+        Schema::dropIfExists('departments');
     }
 };

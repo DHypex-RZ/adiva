@@ -1,4 +1,4 @@
-import {Button, Input, Popover, PopoverContent, PopoverTrigger} from "@nextui-org/react";
+import { Button, Input, Popover, PopoverContent, PopoverTrigger } from "@nextui-org/react";
 
 export default function BotonEditarImagen() {
     const csrf = document.getElementById("csrf-token").content
@@ -21,8 +21,8 @@ export default function BotonEditarImagen() {
                         </div>
                         <div className="mt-2 flex flex-col gap-2 w-full">
                             <form encType="multipart/form-data" method="post" action="/subir-imagen">
-                                <input name="_token" type="hidden" defaultValue={csrf}/>
-                                <Input type="file" name="imagen" required={true}/>
+                                <input name="_token" type="hidden" defaultValue={csrf} />
+                                <Input type="file" name="imagen" required={true} />
                                 <Button type="submit" color="primary" className="mt-4 w-full">
                                     Editar
                                 </Button>

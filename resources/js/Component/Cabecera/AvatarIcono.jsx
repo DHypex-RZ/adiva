@@ -1,6 +1,6 @@
 import {Avatar, Button, Popover, PopoverContent, PopoverTrigger, Tooltip} from "@nextui-org/react";
 import {Link} from "@inertiajs/react";
-import BotonEditarImagen from "@/Component/BotonEditarImagen.jsx";
+import BotonEditarImagen from "@/Component/Cabecera/BotonEditarImagen.jsx";
 
 export default function AvatarIcono({usuario}) {
 

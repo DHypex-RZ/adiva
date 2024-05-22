@@ -19,7 +19,7 @@ export default function PanelControl({ edificio, usuario }) {
       }
 
       peticion()
-   }, [pisos])
+   }, [usuario.department])
 
    return (
       <Card>

@@ -59,8 +59,3 @@ export default function Comunidad() {
       </>
    )
 }
-
-// * Incluir el siguente codigo para cuando el edificio es nuevo y no tiene nº de pisos asignados
-/* 
-
-                    */

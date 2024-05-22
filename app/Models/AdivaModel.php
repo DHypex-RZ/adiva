@@ -17,6 +17,8 @@ class AdivaModel
    private Floor $floor;
    private Department $department;
    private Place $place;
+   private Incident $incident;
+   private Chat $chat;
 
 
    function __construct()
@@ -25,6 +27,8 @@ class AdivaModel
       $this->floor = new Floor();
       $this->department = new Department();
       $this->place = new Place();
+      $this->incident = new Incident();
+      $this->chat = new Chat();
    }
 
    function seleccionarVistaInicial(): InertiaResponse|RedirectResponse
@@ -39,6 +43,10 @@ class AdivaModel
       if (($usuario !== null)) {
          $comunidad = $this->building->where(["id" => $usuario->building])->first();
          $comunidad->places = $this->place->where("building", $comunidad->id)->orderby("name")->get();
+         $comunidad->incidents = $this->incident
+            ->selectRaw("DAY(created_at) day, MONTH(created_at) month, YEAR(created_at) year, comment, id, user_name")
+            ->where("building", $usuario->building)->whereMonth("created_at", date("m"))->get();
+         $comunidad->chats = $this->chat->where("building", $usuario->building)->get();
          return Inertia::render('Adiva', ["comunidad" => $comunidad]);
       } else return Inertia::render('Presentacion');
    }

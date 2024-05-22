@@ -11,7 +11,7 @@ export default function Departamento({ data, usuario }) {
             data.user
                ?
                <>
-                  <Avatar isBordered src={data.user.image} /> <p>{data.user.email}</p>
+                  <Avatar isBordered src={"images/" + data.user.image} /> <p>{data.user.name}</p>
                </>
                : !usuario.department
                   ?

@@ -13,7 +13,7 @@ class Place extends Model
 
    protected $table = "places";
    protected $fillable = ["building", "name"];
-   protected $hidden = ['password', 'remember_token'];
+   protected $hidden = ["created_at", "updated_at"];
 
    function insertarSitio(Request $request): RedirectResponse
    {

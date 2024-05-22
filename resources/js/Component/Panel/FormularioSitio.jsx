@@ -7,8 +7,24 @@ export default function FormularioEdificio({ edificio }) {
       nombre: ""
    })
 
-   function enviarFormulario() {
-      post("/sitios")
+   function enviarFormulario(e) {
+      e.preventDefault()
+      post("/sitios", {
+         preserveScroll: true,
+         onSuccess: () => {
+            const element = document.elementFromPoint(0, 0)
+            if (element) {
+               const event = new MouseEvent('click', {
+                  view: window,
+                  bubbles: true,
+                  cancelable: true,
+                  clientX: 0,
+                  clientY: 0
+               })
+               element.dispatchEvent(event)
+            }
+         }
+      })
    }
 
    return (
@@ -18,7 +34,10 @@ export default function FormularioEdificio({ edificio }) {
             type="text" placeholder="Nombre del sitio" name="nombre" isRequired
             labelPlacement="outside" onChange={e => setData("nombre", e.target.value)}
          />
-         <Button className="w-1/2 m-auto mt-3" color="primary" disabled={processing} type="submit">
+         <Button
+            className="w-1/2 m-auto mt-3" color="primary" disabled={processing} type="submit"
+            variant="shadow"
+         >
             Crear
          </Button>
       </ form>

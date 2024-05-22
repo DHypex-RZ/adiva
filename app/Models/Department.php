@@ -12,9 +12,9 @@ class Department extends Model
 
    protected $table = "departments";
    protected $fillable = ["building", "floor", "department", "user"];
-   protected $hidden = ['password', 'remember_token'];
+   protected $hidden = ["created_at", "updated_at"];
 
-   static function insertarDepartamentos(int $edificio, int $piso, int $departamentos)
+   static function insertarDepartamentos(int $edificio, int $piso, int $departamentos): void
    {
       for ($i = 1; $i <= $departamentos; $i++)
          Department::create(["building" => $edificio, "floor" => $piso, "department" => $i]);

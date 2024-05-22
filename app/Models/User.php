@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -32,10 +33,7 @@ class User extends Authenticatable
     *
     * @var array<int, string>
     */
-   protected $hidden = [
-      'password',
-      'remember_token',
-   ];
+   protected $hidden = ['password', 'remember_token', "created_at", "updated_at"];
 
    /**
     * Get the attributes that should be cast.
@@ -54,6 +52,22 @@ class User extends Authenticatable
    {
       User::where("id", $request->input("usuario"))->update(["department" => true]);
       Department::where("id", $request->input("departamento"))->update(["user" => $request->input("usuario")]);
+      return redirect("/");
+   }
+
+   function editarPerfil(Request $request): RedirectResponse
+   {
+      $usuario = Auth::user();
+
+      if ($request->hasFile("imagen")) {
+         $imagen = $request->file("imagen");
+         $archivo = "user-$usuario->email.jpg";
+         $imagen->storeAs("images", $archivo, "public_uploads");
+      } else $archivo = $usuario->image;
+
+      !empty($request->input("nombre")) ? $nombre = $request->input("nombre") : $nombre = $usuario->name;
+      User::where(["id" => $usuario->id])->update(["image" => $archivo, "name" => $nombre]);
+
       return redirect("/");
    }
 }

@@ -1,17 +1,28 @@
 import { Link } from "@inertiajs/react";
-import { Avatar, Button } from "@nextui-org/react";
+import { Avatar, Button, Chip } from "@nextui-org/react";
 
-export default function Departamento({ data, usuario }) {
+export default function Departamento({ data, usuario, onClick }) {
    return (
-      <div className="flex flex-col items-center justify-center my-2">
-         <p className="text-center bg-gray-100 p-1 border rounded-full mb-2 cursor-pointer hover:bg-cyan-400">
+      <div className="flex flex-col items-center justify-center my-2 col-span-2 lg:col-span-1">
+         <Chip className="mb-2">
             {data.floor} {String.fromCharCode(data.department + 96).toUpperCase()}
-         </p>
+         </Chip>
          {
             data.user
                ?
                <>
-                  <Avatar isBordered src={"images/" + data.user.image} /> <p>{data.user.name}</p>
+                  <Avatar isBordered src={data.user.image !== null ? "images/" + data.user.image : ""} />
+                  <p className="text-center">{data.user.name}</p>
+                  {
+                     usuario.admin && data.user.id != usuario.id
+                        ?
+                        <Button
+                           color="danger" variant="shadow" as={Link} method="post"
+                           data={{ usuario: data.user.id }} href={"/expulsar"} onClick={onClick}
+                        >Expulsar</Button>
+                        :
+                        <></>
+                  }
                </>
                : !usuario.department
                   ?
@@ -22,7 +33,7 @@ export default function Departamento({ data, usuario }) {
                      Mudarse aquí
                   </Button>
                   :
-                  <p>Actualmente no esta ocupado</p>
+                  <p className="text-center">Actualmente no esta ocupado</p>
          }
       </div>
    )

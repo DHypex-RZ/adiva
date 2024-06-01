@@ -15,7 +15,7 @@ export default function Incidente({ edificio, usuario }) {
          </CardHeader>
          <Divider />
          <CardBody className="overflow-auto h-[400px]">
-            <TablaIncidente incidentes={edificio.incidents} />
+            <TablaIncidente incidentes={edificio.incidents} usuario={usuario} />
          </CardBody>
          <Divider />
          <CardFooter className="flex justify-center">

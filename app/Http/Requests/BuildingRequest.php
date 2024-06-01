@@ -22,8 +22,8 @@ class BuildingRequest extends FormRequest
    public function rules(): array
    {
       return [
-         "pisos" => "required|numeric|min:1",
-         "departamentos" => "required|numeric|min:1",
+         "pisos" => "required|numeric|min:0",
+         "departamentos" => "required|numeric|min:0",
       ];
    }
 }

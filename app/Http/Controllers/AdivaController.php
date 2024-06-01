@@ -37,7 +37,10 @@ class AdivaController
 
    function asignarComunidad(ComunidadRequest $request): RedirectResponse
    {
-      $data = [$request->input("cp"), $request->input("tipo"), $request->input("direccion"), $request->input("numero")];
+      $data = [
+         $request->input("cp"), $request->input("tipo"),
+         $request->input("direccion"), $request->input("numero")
+      ];
       $this->adivaModel->tratarDatosComunidad(...$data);
       return redirect("/");
    }
@@ -46,7 +49,21 @@ class AdivaController
    function insertarDatosEdificio(Request $request): RedirectResponse
    {
       $data = [$request->input("edificio"), $request->input("pisos"), $request->input("departamentos")];
-      $this->adivaModel->insertarDatosEdificio(...$data);
+      if ($request->input("actualizando")) $this->adivaModel->acutalizarDatosEdificio(...$data);
+      else $this->adivaModel->insertarDatosEdificio(...$data);
+      return redirect("/");
+   }
+
+   function asiganarAdminstrador(Request $request): RedirectResponse
+   {
+      $idUsuario = $request->input("user");
+      $this->adivaModel->actualizarAdministrador($idUsuario);
+      return redirect("/");
+   }
+
+   function expulsarUsuario(Request $request): RedirectResponse
+   {
+      $this->adivaModel->expulsarUsuario($request->input("usuario"));
       return redirect("/");
    }
 }

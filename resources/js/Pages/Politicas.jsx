@@ -10,20 +10,20 @@ export default function Politicas() {
       <>
          <Head title="Política de privacidad y cookies" />
          <Header usuario={user} />
-         <div className="my-4 mx-10 flex justify-center">
+         <div className="my-8 mx-10 flex justify-center">
             <Card className="min-w-[450px] w-[1000px]">
                <CardHeader className="flex justify-center">
                   <h2 className="text-2xl">Política de privacidad y cookies</h2>
                </CardHeader>
                <Divider />
-               <CardBody>
+               <CardBody className="px-12 pb-12 pt-4">
                   <p>
                      En Adiva, nos comprometemos a proteger la privacidad de nuestros usuarios y a utilizar sus
                      datos personales de manera responsable. Esta Política de Privacidad y Cookies describe cómo
                      recolectamos, utilizamos y divulgamos sus datos personales cuando utiliza nuestro sitio web,
                      aplicaciones móviles u otros servicios.
                   </p>
-                  <p className="text-xl mt-2">Recopilación de datos personales</p>
+                  <p className="text-xl mt-5">Recopilación de datos personales</p>
                   <ul className="list-disc ml-4">
                      <p className="text-lg">
                         Recopilamos varios tipos de datos personales sobre usted, incluyendo:
@@ -46,7 +46,7 @@ export default function Politicas() {
                         sitios web de terceros.
                      </li>
                   </ul>
-                  <p className="text-xl mt-2">Uso de datos personales</p>
+                  <p className="text-xl mt-5">Uso de datos personales</p>
                   <ul className="list-disc ml-4">
                      <p className="text-lg">Utilizamos sus datos personales para los siguientes propósitos:</p>
                      <li>
@@ -70,7 +70,7 @@ export default function Politicas() {
                         actividades fraudulentas.
                      </li>
                   </ul>
-                  <p className="text-xl mt-2">Divulgación de datos personales</p>
+                  <p className="text-xl mt-5">Divulgación de datos personales</p>
                   <ul className="list-disc ml-4">
                      <p className="text-lg">
                         Podemos divulgar sus datos personales a terceros en las siguientes circunstancias:
@@ -84,7 +84,7 @@ export default function Politicas() {
                         plataformas de redes sociales u otras aplicaciones de terceros.
                      </li>
                   </ul>
-                  <p className="text-xl mt-2">Sus derechos</p>
+                  <p className="text-xl mt-5">Sus derechos</p>
                   <ul className="list-disc ml-4">
                      <p className="text-lg">
                         Usted tiene ciertos derechos sobre sus datos personales, incluyendo:
@@ -115,9 +115,7 @@ export default function Politicas() {
                         los transmitamos a otro responsable del tratamiento en determinadas circunstancias.
                      </li>
                   </ul>
-                  <p className="text-xl mt-2">
-                     Cookies
-                  </p>
+                  <p className="text-xl mt-5">Cookies</p>
                   <p>
                      Utilizamos cookies y tecnologías similares para recopilar y almacenar información sobre su
                      uso de nuestros Servicios. Las cookies son pequeños archivos de texto que se almacenan en su
@@ -130,11 +128,11 @@ export default function Politicas() {
                      de que se instale una cookie. Sin embargo, si bloquea todas las cookies, es posible que no
                      pueda utilizar algunas de las funciones de nuestros Servicios.
                   </p>
-                  <p className="text-xl mt-2">Cambios en esta Política</p>
+                  <p className="text-xl mt-5">Cambios en esta Política</p>
                   <p>
                      Podemos actualizar esta Política periódicamente para reflejar cambios en nuestras prácticas
                      de privacidad o los requisitos legales. Le notificaremos de cualquier cambio material
-                     mediante la publicación de la Política revisada en nuestros Servicios.
+                     mediante la publicación de la Política revisada en nuestros servicios.
                   </p>
                </CardBody>
             </Card>

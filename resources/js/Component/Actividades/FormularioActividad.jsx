@@ -12,8 +12,7 @@ export default function FormularioActividad({ edificio }) {
       horario: {}
    })
 
-   function enviarFormulario(e) {
-      e.preventDefault()
+   function enviarFormulario() {
       post("/actividades", {
          preserveScroll: true,
          onSuccess: () => {
@@ -34,7 +33,7 @@ export default function FormularioActividad({ edificio }) {
 
    return (
       <form className="flex flex-col" onSubmit={enviarFormulario}>
-         <h2 className="text-lg text-center mb-2">Nuevo espacio común</h2>
+         <h2 className="text-lg text-center mb-2">Nueva actividad</h2>
          <Sitio
             data={edificio.places} className="mt-2"
             onChange={(e) => setData("sitio", e.target.value)}
@@ -50,7 +49,7 @@ export default function FormularioActividad({ edificio }) {
             onChange={(e) => setData("horario", e)} isRequired
          />
          <Button
-            className="w-1/2 m-auto mt-3" color="primary" disabled={processing} type="submit"
+            className="w-1/2 m-auto mt-5" color="primary" disabled={processing} type="submit"
             variant="shadow"
          >
             Crear

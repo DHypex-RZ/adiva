@@ -1,0 +1,95 @@
+{
+  "_Footer-BMDbqsvG.js": {
+    "file": "assets/Footer-BMDbqsvG.js",
+    "name": "Footer",
+    "imports": [
+      "resources/js/app.jsx",
+      "_chunk-26YN6OD7-B69WkdPC.js"
+    ]
+  },
+  "_chunk-26YN6OD7-B69WkdPC.js": {
+    "file": "assets/chunk-26YN6OD7-B69WkdPC.js",
+    "name": "chunk-26YN6OD7",
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "_chunk-OKTOLZE5-CUIpdVTa.js": {
+    "file": "assets/chunk-OKTOLZE5-CUIpdVTa.js",
+    "name": "chunk-OKTOLZE5",
+    "imports": [
+      "_chunk-26YN6OD7-B69WkdPC.js",
+      "resources/js/app.jsx"
+    ]
+  },
+  "_chunk-ZBZZ6A2J-CqrI_T42.js": {
+    "file": "assets/chunk-ZBZZ6A2J-CqrI_T42.js",
+    "name": "chunk-ZBZZ6A2J",
+    "imports": [
+      "_chunk-26YN6OD7-B69WkdPC.js",
+      "resources/js/app.jsx"
+    ]
+  },
+  "resources/js/Pages/Adiva.jsx": {
+    "file": "assets/Adiva-BmDiaTeN.js",
+    "name": "Adiva",
+    "src": "resources/js/Pages/Adiva.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_Footer-BMDbqsvG.js",
+      "_chunk-ZBZZ6A2J-CqrI_T42.js",
+      "_chunk-26YN6OD7-B69WkdPC.js",
+      "_chunk-OKTOLZE5-CUIpdVTa.js"
+    ]
+  },
+  "resources/js/Pages/Comunidad.jsx": {
+    "file": "assets/Comunidad-C1mDxMW2.js",
+    "name": "Comunidad",
+    "src": "resources/js/Pages/Comunidad.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_chunk-26YN6OD7-B69WkdPC.js",
+      "_chunk-OKTOLZE5-CUIpdVTa.js"
+    ]
+  },
+  "resources/js/Pages/Politicas.jsx": {
+    "file": "assets/Politicas-DipFmVmT.js",
+    "name": "Politicas",
+    "src": "resources/js/Pages/Politicas.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_Footer-BMDbqsvG.js",
+      "_chunk-ZBZZ6A2J-CqrI_T42.js",
+      "_chunk-26YN6OD7-B69WkdPC.js"
+    ]
+  },
+  "resources/js/Pages/Presentacion.jsx": {
+    "file": "assets/Presentacion-ah7F-YkI.js",
+    "name": "Presentacion",
+    "src": "resources/js/Pages/Presentacion.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_Footer-BMDbqsvG.js",
+      "_chunk-26YN6OD7-B69WkdPC.js"
+    ]
+  },
+  "resources/js/app.jsx": {
+    "file": "assets/app-n6SSsi1u.js",
+    "name": "app",
+    "src": "resources/js/app.jsx",
+    "isEntry": true,
+    "dynamicImports": [
+      "resources/js/Pages/Adiva.jsx",
+      "resources/js/Pages/Comunidad.jsx",
+      "resources/js/Pages/Politicas.jsx",
+      "resources/js/Pages/Presentacion.jsx"
+    ],
+    "css": [
+      "assets/app-B9CSkDNl.css"
+    ]
+  }
+}

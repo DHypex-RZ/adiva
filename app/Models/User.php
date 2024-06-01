@@ -25,7 +25,9 @@ class User extends Authenticatable
       'email',
       'password',
       'google_id',
-      'image'
+      'image',
+      'admin',
+      'admin_time'
    ];
 
    /**
@@ -50,7 +52,7 @@ class User extends Authenticatable
 
    function asiganarDepartamentoUsuario(Request $request): RedirectResponse
    {
-      User::where("id", $request->input("usuario"))->update(["department" => true]);
+      $this->where("id", $request->input("usuario"))->update(["department" => true]);
       Department::where("id", $request->input("departamento"))->update(["user" => $request->input("usuario")]);
       return redirect("/");
    }
@@ -66,7 +68,7 @@ class User extends Authenticatable
       } else $archivo = $usuario->image;
 
       !empty($request->input("nombre")) ? $nombre = $request->input("nombre") : $nombre = $usuario->name;
-      User::where(["id" => $usuario->id])->update(["image" => $archivo, "name" => $nombre]);
+      $this->where(["id" => $usuario->id])->update(["image" => $archivo, "name" => $nombre]);
 
       return redirect("/");
    }

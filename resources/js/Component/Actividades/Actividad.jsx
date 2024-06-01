@@ -5,7 +5,7 @@ import {
 } from "@nextui-org/react";
 import FormularioActividad from "@/Component/Actividades/FormularioActividad";
 
-export default function Actividad({ fecha, edificio }) {
+export default function Actividad({ fecha, edificio, usuario }) {
    const fechaBusqueda = fecha.year + "-" +
       (fecha.month > 10 ? fecha.month : '0' + fecha.month) +
       "-" + (fecha.day > 10 ? fecha.day : '0' + fecha.day)
@@ -19,7 +19,7 @@ export default function Actividad({ fecha, edificio }) {
          </CardHeader>
          <Divider />
          <CardBody>
-            <TablaActividad fecha={fechaBusqueda} edificio={edificio.id} />
+            <TablaActividad fecha={fechaBusqueda} edificio={edificio.id} usuario={usuario} />
          </CardBody>
          <Divider />
          <CardFooter className="flex justify-center">

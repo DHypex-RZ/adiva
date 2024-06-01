@@ -19,6 +19,7 @@ class AdivaModel
    private Place $place;
    private Incident $incident;
    private Chat $chat;
+   private User $user;
 
 
    function __construct()
@@ -29,6 +30,7 @@ class AdivaModel
       $this->place = new Place();
       $this->incident = new Incident();
       $this->chat = new Chat();
+      $this->user = new User();
    }
 
    function seleccionarVistaInicial(): InertiaResponse|RedirectResponse
@@ -41,12 +43,15 @@ class AdivaModel
       }
 
       if (($usuario !== null)) {
-         $comunidad = $this->building->where(["id" => $usuario->building])->first();
+         $comunidad = $this->building->find($usuario->building);
          $comunidad->places = $this->place->where("building", $comunidad->id)->orderby("name")->get();
          $comunidad->incidents = $this->incident
             ->selectRaw("DAY(created_at) day, MONTH(created_at) month, YEAR(created_at) year, comment, id, user_name")
             ->where("building", $usuario->building)->whereMonth("created_at", date("m"))->get();
-         $comunidad->chats = $this->chat->where("building", $usuario->building)->get();
+         $comunidad->admin = $this->user->where('building', $comunidad->id)
+            ->where('admin', true)
+            ->exists();
+
          return Inertia::render('Adiva', ["comunidad" => $comunidad]);
       } else return Inertia::render('Presentacion');
    }
@@ -64,7 +69,29 @@ class AdivaModel
 
    function insertarDatosEdificio(int $id, int $pisos, int $departamentos): void
    {
-      Building::where("id", $id)->update(["floors" => $pisos, "departments" => $departamentos]);
-      Floor::insertarPisos($id, $pisos, $departamentos);
+      $this->building->where("id", $id)->update(["floors" => $pisos, "departments" => $departamentos]);
+      $this->floor->insertarPisos($id, $pisos, $departamentos);
+   }
+
+   function acutalizarDatosEdificio(int $id, int $pisos, int $departamentos): void
+   {
+      $edificio = $this->building->find($id);
+      $nuevosPisos = $edificio->floors + $pisos;
+      $nuevosDepartamentos = $edificio->departments + $departamentos;
+      $this->building->where("id", $id)->update(["floors" => $nuevosPisos, "departments" => $nuevosDepartamentos]);
+      $this->floor->actualizarPisos($id, $nuevosPisos, $nuevosDepartamentos);
+   }
+
+   function actualizarAdministrador($usuario): void
+   {
+      $this->user->where("id", $usuario)->update([
+         "admin" => true, "admin_time" => date('Y-m-d', strtotime('+1 month'))
+      ]);
+   }
+
+   function expulsarUsuario($usuario): void
+   {
+      $this->user->where("id", $usuario)->update(["building" =>  null]);
+      $this->department->where("user", $usuario)->update(["user" => null]);
    }
 }

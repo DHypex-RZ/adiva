@@ -18,7 +18,7 @@ class Chat extends Model
 
     function insertarMensaje(Request $request): RedirectResponse
     {
-        $mensaje = Chat::create([
+        $mensaje = $this->create([
             "building" => $request->input("edificio"),
             "user" => $request->input("usuario"),
             "comment" => $request->input("comentario")
@@ -28,7 +28,7 @@ class Chat extends Model
 
     function obtenerMensajes(string $edificio): JsonResponse
     {
-        $mensajes = Chat::where("building", $edificio)->get();
+        $mensajes = $this->where("building", $edificio)->get();
         foreach ($mensajes as $m) {
             $m->image = (User::where("id", $m->user)->select(["image"])->first())->image;
         }

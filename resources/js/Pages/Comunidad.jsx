@@ -31,7 +31,7 @@ export default function Comunidad() {
                <Input
                   type="text" label="Código postal" placeholder="Código postal de la comunidad" name="cp"
                   isRequired labelPlacement="outside" className="my-3" value={data.cp}
-                  onChange={e => setData("cp", e.target.value)}
+                  onChange={e => setData("cp", e.target.value)} style={{ border: 0 }}
                />
                <Select
                   label="Tipo de calle" placeholder="Tipo de calle de la comunidad" isRequired name="tipo"
@@ -43,11 +43,11 @@ export default function Comunidad() {
                <Input
                   type="text" label="Dirección" placeholder="Dirección de la comunidad" name="direccion"
                   isRequired labelPlacement="outside" className="my-3" value={data.direccion}
-                  onChange={e => setData("direccion", e.target.value)}
+                  onChange={e => setData("direccion", e.target.value)} style={{ border: 0 }}
                />
                <Input
                   type="number" label="Número" placeholder="Número de la comunidad" name="numero" isRequired
-                  labelPlacement="outside" className="my-3" value={data.numero}
+                  labelPlacement="outside" className="my-3" value={data.numero} style={{ border: 0 }}
                   onChange={e => setData("numero", e.target.value)} defaultValue="1"
 
                />

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import LineaActividad from "@/Component/Actividades/LineaActividad"
 
-export default function TablaActividad({ fecha, edificio }) {
+export default function TablaActividad({ fecha, edificio, usuario }) {
    const [actividades, setActividades] = useState([])
 
    useEffect(() => {
@@ -36,7 +36,10 @@ export default function TablaActividad({ fecha, edificio }) {
                ?
                <p className="col-span-3 text-center">Sin actividades</p>
                :
-               actividades.map((a) => <LineaActividad key={a.id} data={a} />)
+               actividades.map((a) => <LineaActividad
+                  key={a.id} data={a} isAdmin={usuario.admin}
+                  onClick={() => { window.location.reload() }}
+               />)
          }
       </div >
    )

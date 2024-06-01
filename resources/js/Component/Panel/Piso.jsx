@@ -9,8 +9,8 @@ export default function Piso({ data, usuario }) {
             <h2>Planta {data.floor}</h2>
          </CardHeader>
          <Divider />
-         <CardBody>
-            {data.department.map((d) => <Departamento key={d.id} data={d} usuario={usuario}></Departamento>)}
+         <CardBody className="grid grid-cols-2">
+            {data.department.map((d) => <Departamento key={d.id} data={d} usuario={usuario} />)}
          </CardBody>
       </Card>
    )

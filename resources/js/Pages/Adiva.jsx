@@ -39,7 +39,7 @@ export default function Adiva({ comunidad }) {
                      color="success"
                   />
                </I18nProvider>
-               <Actividad fecha={fecha} edificio={comunidad} />
+               <Actividad fecha={fecha} edificio={comunidad} usuario={user.admin ? user : null} />
                <Incidente edificio={comunidad} usuario={user} />
             </div>
          </main>

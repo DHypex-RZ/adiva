@@ -14,22 +14,31 @@ class Floor extends Model
    protected $fillable = ["building", "floor"];
    protected $hidden = ["created_at", "updated_at"];
 
-   static function insertarPisos(int $edificio, int $pisos, $departamentos): void
+   function insertarPisos(int $edificio, int $pisos, int $departamentos): void
    {
       for ($i = 1; $i <= $pisos; $i++) {
-         Floor::create(["building" => $edificio, "floor" => $i]);
+         $this->create(["building" => $edificio, "floor" => $i]);
          Department::insertarDepartamentos($edificio, $i, $departamentos);
+      }
+   }
+
+   function actualizarPisos(int $edificio, int $pisos, int $departamentos): void
+   {
+      $this->where("building", $edificio)->delete();
+      for ($i = 1; $i <= $pisos; $i++) {
+         $this->create(["building" => $edificio, "floor" => $i]);
+         Department::actualizarDepartamentos($edificio, $i, $departamentos);
       }
    }
 
    function obtenerPisos(int $edificio): Collection
    {
-      $pisos = Floor::where("building", $edificio)->get();
+      $pisos = $this->where("building", $edificio)->get();
 
       foreach ($pisos as $p) {
          $p->department = Department::where("floor", $p->floor)->get();
          foreach ($p->department as $d) {
-            $d->user = User::where("id", $d->user)->select(["image", "name"])->first();
+            $d->user = User::where("id", $d->user)->select(["image", "name", "id"])->first();
          }
       }
 

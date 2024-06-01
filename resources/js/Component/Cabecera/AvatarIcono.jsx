@@ -11,7 +11,8 @@ export default function AvatarIcono({ usuario }) {
         <Popover placement="bottom" showArrow={true}>
             <PopoverTrigger>
                 <Avatar
-                    src={"images/" + usuario.image} isBordered className="hover:cursor-pointer"
+                    src={usuario.image !== null ? "images/" + usuario.image : ""}
+                    isBordered className="hover:cursor-pointer"
                 />
             </PopoverTrigger>
             <PopoverContent>

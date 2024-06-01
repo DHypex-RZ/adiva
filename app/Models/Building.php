@@ -12,6 +12,4 @@ class Building extends Model
    protected $table = "buildings";
    protected $fillable = ["cp", "type", "address", "number", "floors", "departments"];
    protected $hidden = ["created_at", "updated_at"];
-
-   // ! En caso final de no uso, borrar
 }

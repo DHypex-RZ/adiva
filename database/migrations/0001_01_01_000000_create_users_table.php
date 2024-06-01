@@ -15,13 +15,15 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('building')->nullable();
             $table->boolean('department')->default(false);
+            $table->boolean('admin')->default(false);
+            $table->date('admin_time')->nullable();
             $table->string('name');
+            $table->string('image')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('google_id')->nullable();
             $table->string('password')->nullable();
             $table->rememberToken();
-            $table->string('image')->nullable();
             $table->timestamps();
         });
 

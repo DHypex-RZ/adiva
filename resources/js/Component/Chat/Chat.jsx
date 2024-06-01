@@ -4,7 +4,7 @@ import { Textarea } from "@nextui-org/react"
 import { useEffect, useState } from "react"
 
 export default function Chat({ comunidad, usuario }) {
-   const [timer, setTimer] = useState(100)
+   const [temporizador, setTemporizador] = useState(100)
    const [mensajes, setMensajes] = useState([])
 
    useEffect(() => {
@@ -13,8 +13,8 @@ export default function Chat({ comunidad, usuario }) {
             let peticion = await fetch("/mensajes/" + comunidad);
             let data = await peticion.json()
             setMensajes(data)
-            setTimer(5000)
-         }, timer)
+            setTemporizador(5000)
+         }, temporizador)
       }
 
       obtenerMensajes()
@@ -66,6 +66,7 @@ export default function Chat({ comunidad, usuario }) {
                   onChange={(e) => setData("comentario", e.target.value)} isRequired
                   className="col-span-2" value={data.comentario}
                   description={"Limite de caracteres: " + (255 - data.comentario.length)}
+                  style={{ border: 0 }}
                />
                <Button
                   type="submit" color="success" disabled={processing}

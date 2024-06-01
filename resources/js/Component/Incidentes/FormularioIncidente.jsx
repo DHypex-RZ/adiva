@@ -39,6 +39,7 @@ export default function FormularioIncidente({ edificio, nombre }) {
             maxLength={255} placeholder="Comenta el incidente" label="Incidente"
             onChange={(e) => setData("incidente", e.target.value)} isRequired
             description={"Limite de caracteres: " + (255 - data.incidente.length)}
+            style={{ border: 0 }}
          />
          <Button
             className="w-1/2 m-auto mt-3" color="danger" disabled={processing}

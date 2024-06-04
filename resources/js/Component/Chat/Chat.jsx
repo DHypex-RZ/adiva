@@ -12,8 +12,9 @@ export default function Chat({ comunidad, usuario }) {
          setTimeout(async () => {
             let peticion = await fetch("/mensajes/" + comunidad);
             let data = await peticion.json()
+            data.reverse()
             setMensajes(data)
-            setTemporizador(5000)
+            setTemporizador(1000)
          }, temporizador)
       }
 

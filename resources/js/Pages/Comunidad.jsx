@@ -27,7 +27,7 @@ export default function Comunidad() {
                   flex flex-col items-center shadow-2xl" onSubmit={enviarFormulario}
             >
                <h2 className="text-2xl">Bienvenido a Adiva</h2>
-               <p className="text-sm mb-4 text-gray-400">Asegurate de que la información sea correcta</p>
+               <p className="text-sm mb-4 text-gray-400">Asegúrate de que la información sea correcta</p>
                <Input
                   type="text" label="Código postal" placeholder="Código postal de la comunidad" name="cp"
                   isRequired labelPlacement="outside" className="my-3" value={data.cp}

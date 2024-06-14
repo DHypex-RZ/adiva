@@ -37,7 +37,7 @@ export default function TablaActividad({ fecha, edificio, usuario }) {
                <p className="col-span-3 text-center">Sin actividades</p>
                :
                actividades.map((a) => <LineaActividad
-                  key={a.id} data={a} isAdmin={usuario.admin}
+                  key={a.id} data={a} isAdmin={usuario.admin != null ? usuario.admin : null}
                   onClick={() => { window.location.reload() }}
                />)
          }

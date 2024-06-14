@@ -30,7 +30,8 @@ class Chat extends Model
     {
         $mensajes = $this->where("building", $edificio)->get();
         foreach ($mensajes as $m) {
-            $m->image = (User::where("id", $m->user)->select(["image"])->first())->image;
+            $preImage = User::where("id", $m->user)->select("image")->first();
+            $preImage == null ? $m->image = null : $m->image = $preImage->image;
         }
         return response()->json($mensajes);
     }

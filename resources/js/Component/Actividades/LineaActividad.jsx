@@ -16,7 +16,7 @@ export default function LineaActividad({ data, isAdmin, onClick }) {
             {data.schedule}
          </div>
          {
-            isAdmin == true
+            isAdmin
                ?
                <div
                   className={"col-span-3 flex justify-center items-center " + extraClass}

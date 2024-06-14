@@ -1,4 +1,4 @@
-import { Popover, PopoverTrigger, PopoverContent, Button, user } from "@nextui-org/react"
+import { Popover, PopoverTrigger, PopoverContent, Button } from "@nextui-org/react"
 import BotonTemporizador from "@/Component/Util/BotonTemporizador"
 import { router } from "@inertiajs/react"
 
